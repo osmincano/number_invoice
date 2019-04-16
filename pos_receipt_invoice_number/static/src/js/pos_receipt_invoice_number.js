@@ -73,9 +73,10 @@ function pos_invoice_number(instance, module){
                         .filter([['origin', '=', order_name[0]['name']]])
                         .limit(1)
                         .all().then(function (invoice_number) {
-                        console.log('all fields defined in query', invoice_number)
+                        console.log('all fields defined in query', invoice_number[4]['dte_fecha'])
                         invoice_number = invoice_number[0]['uuid']
-			serie = invoice_number[2]['serie']
+			serie = invoice_number[0]['serie']
+			console.log('serie', serie)	
 			numero_dte = invoice_number[3]['numero_dte']
 			dte_fecha = invoice_number[4]['dte_fecha']    
                         $('.pos-receipt-container', self.$el).html(QWeb.render('PosTicket',{
