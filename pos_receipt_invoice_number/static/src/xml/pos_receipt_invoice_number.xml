@@ -5,24 +5,8 @@
         <t t-jquery="t[t-if*='widget.pos.config.receipt_header']" t-operation="before">
             <t>
                 <div>--------------------------------</div>
-                INV number: <t t-esc="invoice_number"/><br />
-            </t>
-            <t t-set="client" t-value="order.get_client()"/>
-            <t t-if="client and widget.pos.config.receipt_customer_vat">
-                Customer: <t t-esc="client['name']"/><br />
-                </t>
-                <t t-if="client['street']">
-                    Street: <t t-esc="client['street']"/><br />
-                </t>
-                <t t-if="client['vat']">
-                    Tin: <t t-esc="client['vat']"/><br />
-                </t>
-                <t t-if="client['email']">
-                    Email: <t t-esc="client['email']"/><br />
-                </t>
-                <t t-if="client['phone'] or client['mobile']">
-                    Phone: <t t-esc="client['phone'] || client['mobile']"/><br />
-                </t>
+                Numero Autorizacion: <t t-esc="invoice_number"/><br />
+            </t>           
 
         </t>
     </t>
