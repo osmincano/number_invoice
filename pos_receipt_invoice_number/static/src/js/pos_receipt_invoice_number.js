@@ -58,6 +58,9 @@ function pos_invoice_number(instance, module){
             var order = this.pos.get('selectedOrder');
             var invoice_number = null;
             var uuid = null;
+	    var serie = null;
+	    var numero_dte = null;
+	    var dte_fecha = null;
             self = this;
             var pos_order_model = new instance.web.Model('pos.order');
             pos_order_model.query(['name'])
@@ -66,16 +69,22 @@ function pos_invoice_number(instance, module){
                 .all().then(function (order_name) {
                     console.log('order_name', order_name[0]['name'])
                     var invoice_model = new instance.web.Model('account.invoice');
-                    invoice_model.query(['uuid', 'origin'])
+                    invoice_model.query(['uuid', 'origin', 'serie', 'numero_dte', 'dte_fecha'])
                         .filter([['origin', '=', order_name[0]['name']]])
                         .limit(1)
                         .all().then(function (invoice_number) {
                         console.log('all fields defined in query', invoice_number)
                         invoice_number = invoice_number[0]['uuid']
+			serie = invoice_number[2]['serie']
+			numero_dte = invoice_number[3]['numero_dte']
+			dte_fecha = invoice_number[4]['dte_fecha']    
                         $('.pos-receipt-container', self.$el).html(QWeb.render('PosTicket',{
                             widget:self,
                             order: order,
                             invoice_number: invoice_number,
+			    serie: serie,
+			    numero_dte: numero_dte,
+			    dte_fecha: dte_fecha,
                             orderlines: order.get('orderLines').models,
                             paymentlines: order.get('paymentLines').models,
                         }));
