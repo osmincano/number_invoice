@@ -6,6 +6,9 @@
             <t>
                 <div>--------------------------------</div>
                 Numero Autorizacion: <t t-esc="invoice_number"/><br />
+                Serie: <t t-esc="serie"/><br />
+                Numero DTE: <t t-esc="numero_dte"/><br />
+                Fecha Autorizacion: <t t-esc="dte_fecha"/><br />
             </t>           
 
         </t>
